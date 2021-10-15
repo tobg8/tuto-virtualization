@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
+import Container from './components/Container.js';
+import Time from './components/Time.js';
 
 import faker from 'faker';
 import {
@@ -43,10 +45,15 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
+  let props = {
+    height: "100vh",
+    width: "100%",
+  };
+
   return (
     <div className="App">
-      <h1>{time.toISOString()}</h1>
-      <div style={{width: "100%", height: "90vh"}}>
+      <Time>{time.toISOString()}</Time>
+      <Container {...props}>
         <AutoSizer>
           {({width, height}) => (
             <List
@@ -76,7 +83,7 @@ const App = () => {
           />
           )}
         </AutoSizer>
-      </div>
+      </Container>
       {/* <ul>
         {people.map((element) => (
           <li key={element.id}>
